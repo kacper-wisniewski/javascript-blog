@@ -2,12 +2,17 @@
 
 /* Variables */
 
-$color-light: #fff;
-$color-dark: #444;
+$color-light: #dcdde1;
+$color-dark: #2f3640;
+$color-main: #353b48;
+$color-alternative: #c23616;
+
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
 $font-text: 'Source Sans Pro', sans-serif;
+
+$transition: .3s;
 
 /* Global */
 
@@ -16,9 +21,9 @@ $font-text: 'Source Sans Pro', sans-serif;
 }
 
 body {
-  background: $color-light;
+  background: $color-main;
   font-family: $font-text;
-  color: $color-dark;
+  color: $color-main;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.7;
@@ -30,6 +35,7 @@ body {
 }
 
 .section-title {
+  margin: 0 0 12px 0;
   font-size: 22px;
   text-transform: uppercase;
   font-family: $font-header;
@@ -40,12 +46,15 @@ body {
     color: lighten($color-dark, 20%);
   }
 }
+a {
+  color: $color-dark;
+  text-decoration: none;
+}
 
 /* Layout */
 
 .wrapper {
   display: flex;
-  margin-left: 10px;
 }
 
 .sidebar {
@@ -67,6 +76,7 @@ body {
 /* Logo */
 
 .logo {
+  color: $color-alternative;
   font-family: $font-logo;
   font-weight: 400;
   font-size: 104px;
@@ -80,14 +90,26 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  transition: $transition;
   .active {
+    transition: $transition;
     font-weight: bold;
+    color: $color-alternative;
   }
 }
 
 .list-horizontal {
   li {
     display: inline-block;
+    a {
+      color: $color-alternative;
+    }
+  }
+}
+
+.tags {
+  span {
+    color: $color-alternative;
   }
 }
 
@@ -107,14 +129,52 @@ body {
     display: block;
   }
 }
-
+.post-title {
+  line-height: 34px;
+  font-size: 34px;
+  margin: 0 12px 0 0;
+}
 .post-author {
+  margin: 0 24px 0 0;
   font-style: italic;
+  color: $color-alternative;
 }
 
 .post-tags {
   display: flex;
   p {
     margin: 0 10px 0 0;
+  }
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 966px) {
+  .sidebar {
+    flex: 1 0 0;
+  }
+  .posts {
+    flex: 5 0 0;
+  }
+}
+
+@media screen and (max-width: 742px) {
+  .wrapper {
+    flex-wrap: wrap;
+  }
+  .posts {
+    flex: none;
+    width: 100%;
+    order: 0;
+  }
+  .sidebar{
+    flex: none;
+    width: 100%;
+    &:first-of-type{
+      order: 1;
+    }
+    &:last-of-type{
+      order: 2;
+    }
   }
 }

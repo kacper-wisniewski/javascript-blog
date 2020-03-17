@@ -6,9 +6,9 @@
 }
 
 body {
-  background: #fff;
+  background: #353b48;
   font-family: "Source Sans Pro", sans-serif;
-  color: #444;
+  color: #353b48;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.7;
@@ -20,6 +20,7 @@ body {
 }
 
 .section-title {
+  margin: 0 0 12px 0;
   font-size: 22px;
   text-transform: uppercase;
   font-family: "Oswald", sans-serif;
@@ -29,14 +30,18 @@ body {
 .section-title span {
   text-transform: none;
   font-weight: 400;
-  color: #777777;
+  color: #5a687b;
+}
+
+a {
+  color: #2f3640;
+  text-decoration: none;
 }
 
 /* Layout */
 .wrapper {
   display: -ms-flexbox;
   display: flex;
-  margin-left: 10px;
 }
 
 .sidebar {
@@ -50,15 +55,16 @@ body {
 }
 
 .sidebar, .posts {
-  background: #fff;
+  background: #dcdde1;
   margin-right: 10px;
   padding: 40px;
-  border: 1px solid #444;
+  border: 1px solid #2f3640;
   border-radius: 5px;
 }
 
 /* Logo */
 .logo {
+  color: #c23616;
   font-family: "Sacramento", cursive;
   font-weight: 400;
   font-size: 104px;
@@ -71,14 +77,25 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  transition: 0.3s;
 }
 
 .list .active {
+  transition: 0.3s;
   font-weight: bold;
+  color: #c23616;
 }
 
 .list-horizontal li {
   display: inline-block;
+}
+
+.list-horizontal li a {
+  color: #c23616;
+}
+
+.tags span {
+  color: #c23616;
 }
 
 /* Authors */
@@ -95,8 +112,16 @@ body {
   display: block;
 }
 
+.post-title {
+  line-height: 34px;
+  font-size: 34px;
+  margin: 0 12px 0 0;
+}
+
 .post-author {
+  margin: 0 24px 0 0;
   font-style: italic;
+  color: #c23616;
 }
 
 .post-tags {
@@ -106,5 +131,44 @@ body {
 
 .post-tags p {
   margin: 0 10px 0 0;
+}
+
+/* Media Queries */
+@media screen and (max-width: 966px) {
+  .sidebar {
+    -ms-flex: 1 0 0px;
+        flex: 1 0 0;
+  }
+  .posts {
+    -ms-flex: 5 0 0px;
+        flex: 5 0 0;
+  }
+}
+
+@media screen and (max-width: 742px) {
+  .wrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .posts {
+    -ms-flex: none;
+        flex: none;
+    width: 100%;
+    -ms-flex-order: 0;
+        order: 0;
+  }
+  .sidebar {
+    -ms-flex: none;
+        flex: none;
+    width: 100%;
+  }
+  .sidebar:first-of-type {
+    -ms-flex-order: 1;
+        order: 1;
+  }
+  .sidebar:last-of-type {
+    -ms-flex-order: 2;
+        order: 2;
+  }
 }
 /*# sourceMappingURL=style.css.map */
