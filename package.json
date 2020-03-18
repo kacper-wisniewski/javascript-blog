@@ -31,6 +31,7 @@
     "onchange": "^6.1.0"
   },
   "dependencies": {
+    "animate.css": "^3.7.2",
     "curl": "^0.1.4"
   }
 }

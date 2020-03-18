@@ -105,11 +105,18 @@ a {
 
 /* Post */
 .post {
-  display: none;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  opacity: 0;
+  transition: 0.3s;
 }
 
 .post.active {
-  display: block;
+  height: auto;
+  opacity: 100%;
+  transition: 0.3s;
 }
 
 .post-title {

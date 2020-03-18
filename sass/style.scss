@@ -124,9 +124,16 @@ a {
 /* Post */
 
 .post {
-  display: none;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  opacity: 0;
+  transition: $transition;
   &.active {
-    display: block;
+    height: auto;
+    opacity: 100%;
+    transition: $transition;
   }
 }
 .post-title {
