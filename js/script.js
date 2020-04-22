@@ -4,6 +4,7 @@
     const templates = {
         articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
     }
+
     const optArticleSelector = '.post',
         optTitleSelector = '.post-title',
         optTitleListSelector = '.titles',
@@ -33,6 +34,7 @@
         /* [Done] for each article */
 
         const articles = document.querySelectorAll(optArticleSelector + customSelector);
+        const parentContainer = document.querySelector('.list.titles');
 
         for(let article of articles) {
         
@@ -47,13 +49,18 @@
             /*  [DONE] create HTML of the link */
 
             //const createdLink = `<li><a href="${articleId}"><span>${articleTitle}</span></a></li>`;
-            
+
             const linkHTMLData = {id: articleId, title: articleTitle};
             const linkHTML = templates.articleLink(linkHTMLData);
+
+            parentContainer.insertAdjacentHTML('beforeend', linkHTML);
+
             /* [DONE] insert link into titleList */
 
             //titleList.innerHTML += createdLink;
         }
+
+        parentContainer.querySelector('a').classList.toggle('active');
 
         titleEventListener();
     };
@@ -286,7 +293,6 @@
             max: 0
         };
         for(let tag in tags) {
-            console.log(`${tag} is used ${tags[tag]} times`);
             params.max = Math.max(tags[tag], params.max);
             params.min = Math.min(tags[tag], params.min);
         }
@@ -351,7 +357,6 @@
         /* [NEW] create variable for all links HTML code */
 
         const tagsParams = calculateTagsParams(allTags);
-        console.log('tagsParams:', tagsParams);
 
         let allTagsHTML = '';
 
@@ -374,7 +379,6 @@
         const allAuthors = [];
         
         const articles = document.querySelectorAll(optArticleSelector);
-        console.log(articles);
         const authorsWrapper = document.querySelector('.authors');
 
         for(let article of articles) {
