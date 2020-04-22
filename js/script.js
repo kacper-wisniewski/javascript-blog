@@ -2,7 +2,9 @@
     
     'use strict';
     const templates = {
-        articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+        articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+        tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+        authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML)
     }
 
     const optArticleSelector = '.post',
@@ -108,14 +110,14 @@
         /* [DONE] find all articles */
         
         const articles = document.querySelectorAll(optArticleSelector);
-
+        const parentContainer = document.querySelector('.list.tags');
         /* [DONE] START LOOP: for every article: */
 
         for(let article of articles) {
         
             /* [DONE] find tags wrapper */
             
-            const tagsWrapper = article.querySelector(optTagsSelector);
+            //const tagsWrapper = article.querySelector(optTagsSelector);
         
             /* [DONE] get tags from data-tags attribute & split tags into array*/
             
@@ -127,16 +129,20 @@
 
                 /* [DONE] generate HTML of the link */
         
-                const tagLink = `<li><a href="#tag-${tag}">${tag}</a></li>`;
-
+                //const tagLink = `<li><a href="#tag-${tag}">${tag}</a></li>`;
+                const tagId = `#${tag}`;
                 /* [DONE] insert HTML of all the links into the tags wrapper */
         
-                tagsWrapper.innerHTML += tagLink;
+                //tagsWrapper.innerHTML += tagLink;
+                const linkHTMLData = {id: tagId, title: tag};
+                const linkHTML = templates.tagLink(linkHTMLData);
 
+                parentContainer.insertAdjacentHTML('beforeend', linkHTML);
                 /* [DONE] END LOOP: for each tag */
             
             }
-      
+            parentContainer.querySelector('a').classList.toggle('active');
+
             /* [DONE] END LOOP: for every article: */
 
         }
@@ -147,23 +153,29 @@
         /* [DONE] find all articles */
 
         const articles = document.querySelectorAll(optArticleSelector);
-
+        const parentContainer = document.querySelector('.list.authors');
         /* [DONE] for each article */
 
         for(let article of articles) {
 
             /* [DONE] find author wrapper */
 
-            const authorWrapper = article.querySelector(optAuthorSelector);
+            //const authorWrapper = article.querySelector(optAuthorSelector);
 
             /* [DONE] find author of article */
 
             const authorData = article.getAttribute('data-author');
-
+            const authorId = `#${authorData}`;
             /* [DONE] add author to html */
 
-            authorWrapper.innerHTML = `<a href="#author-${authorData}">by ${authorData}</a>`;
+            //authorWrapper.innerHTML = `<a href="#author-${authorData}">by ${authorData}</a>`;
+            const linkHTMLData = {id: authorId, title: authorData};
+            const linkHTML = templates.tagLink(linkHTMLData);
+
+            parentContainer.insertAdjacentHTML('beforeend', linkHTML);
         }
+        parentContainer.querySelector('a').classList.toggle('active');
+
     }
     
     function addClickListenersToTags(){
